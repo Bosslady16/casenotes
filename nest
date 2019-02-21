@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Case Notes</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Laila" rel="stylesheet">
+<style>
+*{
+  padding: 0;
+  margin: 0em 0.2em;
+  box-sizing: border-box;
+}
+body {
+  background-image: url("https://images.pexels.com/photos/760115/pexels-photo-760115.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: left;
+  color: white;
+  font-family: 'Laila', serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+ color: #FFEDEA;
+ font-size: 1.5em;
+}
+
+h1 {
+ color: #FFEDEA;
+}
+
+form {
+ color: #E8DCDD;
+}
+
+.form-control {
+    display: block;
+    width: 65%;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: rgb(73, 80, 87);
+    background-color: rgb(255, 255, 255);
+    background-clip: padding-box;
+    padding: 0.375rem 0.75rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(206, 212, 218);
+    border-image: initial;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+
+.form-control:focus {
+   border-color: #FFD9CE !important;
+}
+
+label {
+	margin-top: 0.4em;
+}
+
+
+</style>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+
+<h1 class="mt-3">Case Notes</h1>
+<h2>Customer Info:</h2>
+<form>
+  <div class="form-group">
+    <label>Full Name </label>
+    <input type="text" class="form-control" placeholder="First Name Last Name" id="fname">
+    
+    <label>Phone Number </label>
+    <input type="text" class="form-control" placeholder="+8123456789" id="pnumber">
+  
+    <label>Email Address </label>
+    <input type="email" class="form-control"  placeholder="nest@email.com" id="eadd">
+    
+    <label>Previous Case Number: </label>
+    <input type="text" class="form-control" id="pcase">
+    
+    <label>Serial Number: </label>
+    <input type="text" class="form-control" id="sn">
+  </div>
+  
+  <h2>Customer Statement:</h2>
+  <div class="form-group">
+    <label>What's the issue?</label>
+    <textarea class="form-control" rows="5" id="issue"></textarea>
+  </div>
+  
+  <h2>Investigation:</h2>
+  <div class="form-group">
+    <label>When did the issue start? </label>
+    <input type="email" class="form-control" id="in1">
+    <label>When was the Nest installed? </label>
+    <input type="email" class="form-control" id="in2">
+    <label>Issue Frequency: </label>
+    <input type="email" class="form-control" id="in3">
+    <label>Further Probing: </label>
+    <textarea class="form-control" rows="3" id="in4"></textarea>
+  </div>
+  
+   <h2>Troubleshooting:</h2>
+   <div class="form-group">
+    <label>Troubleshooting steps and results:</label>
+    <textarea class="form-control" rows="12" id="ts"></textarea>
+    </div>
+  
+  <h2>Resolution:</h2>
+  <div class="form-group">
+    <label>Can you confirm/test if it's working now </label>
+    <select class="form-control" id="rs">
+      <option>Yes</option>
+      <option>No</option>
+    </select>
+    <label>What resolved the issue? </label>
+    <textarea class="form-control" rows="5" id="resolution"></textarea>
+  </div>
+  
+  <h2>Notes for the Next Agent:</h2>
+  <label>Further troubleshooting steps: </label>
+    <textarea class="form-control" rows="3" id="ft"></textarea>
+</form>
+
+<button type="button" class="btn btn-dark my-3 mx-2" id="submit-btn">Submit</button>
+
+<div class="case"></div>
+
+<script>
+$("#submit-btn").click(function(){
+let fname = $("#fname").val();
+let pnumber = $("#pnumber").val();
+let eadd = $("#eadd").val();
+let pcase = $("#pcase").val();
+let sn = $("#sn").val();
+let issue = $("#issue").val();
+let in1 = $("#in1").val();
+let in2 = $("#in2").val();
+let in3 = $("#in3").val();
+let in4 = $("#in4").val();
+let ts = $("#ts").val();
+let rs = $("#rs option:selected" ).text();
+let resolution = $("#resolution").val();
+let ft = $("#ft").val();
+
+   $(".case").after("<textarea class='form-control' rows='30' id='submit-case'></textarea>");
+   $("#submit-case").val("\n===== CUSTOMER INFO ===== \n Full Name: " + fname + "\n Phone Number: " + pnumber + "\n E-mail Address: " + eadd + "\n Previous Case " + pcase + "\nSerial Number: " + sn + "\n\n===== CUSTOMER STATEMENT=====\n •What's the issue? \n" + issue + "\n\n===== INVESTIGATION =====\n •When did the issue start? " + in1 + "\n•When was the Nest installed? " + in2 + "\n•Issue frequency: " + in3 + "\n•Further probing: " + in4 + "\n\n=====TROUBLESHOOTING =====\n Troubleshooting steps and results: \n" + ts + "\n\n ===== RESOLUTION =====\n •Can you confirm/test if it's working now? (Y/N) " + rs + "\n •What resolved the issue: " + resolution + "\n\n ===== NOTES FOR THE NEXT AGENT ===== \n• Further troubleshooting steps: " + ft);
+});
+
+</script>
+
+
+<p class="mt-5 mb-2">&copy; Bosslady 2019 </p>
+</body>
+</html>
