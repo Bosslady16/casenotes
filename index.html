@@ -33,20 +33,16 @@ form {
  color: #E8DCDD;
 }
 .form-control {
-    display: block;
-    width: 65%;
-    font-size: 0.8rem;
-    line-height: 1.5;
-    color: rgb(73, 80, 87);
-    background-color: rgb(255, 255, 255);
-    background-clip: padding-box;
-    padding: 0.375rem 0.75rem;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(206, 212, 218);
-    border-image: initial;
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+   display: block;
+    width: 85%;
+    padding: .375rem .75rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 .form-control:focus {
    border-color: #FFD9CE !important;
@@ -63,7 +59,8 @@ label {
 <body>
 
 <h1 class="mt-3">Case Notes</h1>
-<div class="col-8">
+<div class="row">    
+<div class="col-6">
 <h2>Customer Info:</h2>
 <form>
   <div class="form-group">
@@ -127,10 +124,16 @@ label {
 <button type="button" class="btn btn-dark my-3 mx-2" id="submit-btn">Submit</button>
 
 <div class="case"></div>
+<p class="mt-5 mb-2">&copy; Bosslady 2019 </p>
 </div>
-
+    
+    <div class="col-4">
+        <h2>Helpful Links</h2>
+    <div>    
+</div>
 <script>
 $("#submit-btn").click(function(){
+    
 let fname = $("#fname").val();
 let pnumber = $("#pnumber").val();
 let eadd = $("#eadd").val();
@@ -145,12 +148,12 @@ let ts = $("#ts").val();
 let rs = $("#rs option:selected" ).text();
 let resolution = $("#resolution").val();
 let ft = $("#ft").val();
+   $("#submit-case").remove(); 
    $(".case").after("<textarea class='form-control' rows='30' id='submit-case'></textarea>");
    $("#submit-case").val("\n===== CUSTOMER INFO ===== \n Full Name: " + fname + "\n Phone Number: " + pnumber + "\n E-mail Address: " + eadd + "\n Previous Case " + pcase + "\nSerial Number: " + sn + "\n\n===== CUSTOMER STATEMENT=====\n •What's the issue? \n" + issue + "\n\n===== INVESTIGATION =====\n •When did the issue start? " + in1 + "\n•When was the Nest installed? " + in2 + "\n•Issue frequency: " + in3 + "\n•Further probing: " + in4 + "\n\n=====TROUBLESHOOTING =====\n Troubleshooting steps and results: \n" + ts + "\n\n ===== RESOLUTION =====\n •Can you confirm/test if it's working now? (Y/N) " + rs + "\n •What resolved the issue: " + resolution + "\n\n ===== NOTES FOR THE NEXT AGENT ===== \n• Further troubleshooting steps: " + ft);
-});
+});    
 </script>
 
 
-<p class="mt-5 mb-2">&copy; Bosslady 2019 </p>
 </body>
 </html>
